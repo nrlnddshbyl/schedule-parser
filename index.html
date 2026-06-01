@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Parser</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Schedule Parser</h1>
+        <p class="subtitle">Extract and organize your shift schedule</p>
+        
+        <div class="input-section">
+            <label for="scheduleInput">Paste your schedule:</label>
+            <textarea id="scheduleInput" placeholder="Paste your schedule text here..."></textarea>
+            <button onclick="parseSchedule()">Parse Schedule</button>
+            <button onclick="clearAll()" class="secondary-btn">Clear</button>
+        </div>
+
+        <div class="output-section" id="outputSection" style="display: none;">
+            <div class="controls">
+                <button onclick="downloadJSON()" class="export-btn">Download as JSON</button>
+                <button onclick="downloadCSV()" class="export-btn">Download as CSV</button>
+            </div>
+            <div id="output"></div>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
