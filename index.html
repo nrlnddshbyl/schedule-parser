@@ -20,8 +20,20 @@
 
         <div class="output-section" id="outputSection" style="display: none;">
             <div class="controls">
-                <button onclick="downloadJSON()" class="export-btn">Download as JSON</button>
-                <button onclick="downloadCSV()" class="export-btn">Download as CSV</button>
+                <h3>Export Options</h3>
+                <div class="button-group">
+                    <button onclick="downloadJSON()" class="export-btn">Download as JSON</button>
+                    <button onclick="downloadCSV()" class="export-btn">Download as CSV</button>
+                    <button onclick="downloadICS()" class="export-btn ics-btn">Download ICS Calendar</button>
+                </div>
+                
+                <h3 style="margin-top: 25px;">Subscribe to Calendar</h3>
+                <p class="subscribe-info">Add this schedule to your calendar app:</p>
+                <div class="button-group">
+                    <button onclick="openInGoogleCalendar()" class="subscribe-btn google">Add to Google Calendar</button>
+                    <button onclick="openInAppleCalendar()" class="subscribe-btn apple">Add to Apple Calendar</button>
+                    <button onclick="copyCalendarURL()" class="subscribe-btn copy">Copy ICS Link</button>
+                </div>
             </div>
             <div id="output"></div>
         </div>
