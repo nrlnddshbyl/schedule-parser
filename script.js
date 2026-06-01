@@ -310,30 +310,55 @@ function downloadFile(blob, filename) {
     document.body.removeChild(a);
 }
 
-function copyCalendarURL() {
-    if (!window.parsedSchedule) return;
+async function copyCalendarURL() {
+    if (!window.parsedSchedule) {
+        showError('Please parse a schedule first');
+        return;
+    }
     
-    const ics = generateICS(window.parsedSchedule);
-    navigator.clipboard.writeText(ics).then(() => {
+    try {
+        // Generate calendar link with encoded schedule data
+        const scheduleJson = JSON.stringify(window.parsedSchedule);
+        const calendarLink = `${window.location.origin}/api/generate-calendar?schedule=${encodeURIComponent(scheduleJson)}`;
+        
+        // Copy to clipboard
+        await navigator.clipboard.writeText(calendarLink);
+        
         const btn = event.target;
         const originalText = btn.textContent;
-        btn.textContent = 'Copied!';
+        btn.textContent = 'Link Copied! ✓';
         setTimeout(() => {
             btn.textContent = originalText;
-        }, 2000);
-    }).catch(() => {
-        showInfo('Failed to copy. Please download the ICS file instead.');
-    });
+        }, 3000);
+        
+        showInfo('Calendar link copied! Share it to let others subscribe to your schedule.');
+    } catch (error) {
+        downloadICS();
+        showError('Could not copy link. ICS file downloaded instead.');
+    }
 }
 
 function openInGoogleCalendar() {
-    downloadICS();
-    showInfo('ICS file downloaded! Go to Google Calendar > Settings > Import & Export > Select the downloaded file');
+    if (!window.parsedSchedule) {
+        showError('Please parse a schedule first');
+        return;
+    }
+    
+    try {
+        const scheduleJson = JSON.stringify(window.parsedSchedule);
+        const calendarLink = `${window.location.origin}/api/generate-calendar?schedule=${encodeURIComponent(scheduleJson)}`;
+        const googleCalendarUrl = `https://calendar.google.com/calendar/u/0/r/settings/addbyurl?url=${encodeURIComponent(calendarLink)}`;
+        
+        window.open(googleCalendarUrl, '_blank');
+    } catch (error) {
+        showError('Could not open Google Calendar. Please download the ICS file instead.');
+        downloadICS();
+    }
 }
 
 function openInAppleCalendar() {
     downloadICS();
-    showInfo('ICS file downloaded! On iOS/Mac, email it to yourself or use Files app to import it to Calendar.');
+    showInfo('ICS file downloaded! On iOS, email it to yourself or use Files app to import to Calendar. On Mac, open with Calendar app.');
 }
 
 function clearAll() {
