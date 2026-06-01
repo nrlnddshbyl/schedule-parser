@@ -26,6 +26,12 @@ h1 {
     font-size: 2.5em;
 }
 
+h3 {
+    color: #333;
+    margin-bottom: 12px;
+    font-size: 1.1em;
+}
+
 .subtitle {
     color: #666;
     margin-bottom: 30px;
@@ -100,10 +106,67 @@ button:active {
     padding: 10px 20px;
     font-size: 0.95em;
     margin-right: 8px;
+    margin-bottom: 10px;
 }
 
 .export-btn:hover {
     background: #38a169;
+}
+
+.ics-btn {
+    background: #ed8936;
+}
+
+.ics-btn:hover {
+    background: #dd6b20;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.subscribe-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 10px 20px;
+    font-size: 0.95em;
+    flex: 1;
+    min-width: 160px;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.subscribe-btn.google {
+    background: linear-gradient(135deg, #4285f4 0%, #1f6feb 100%);
+}
+
+.subscribe-btn.google:hover {
+    box-shadow: 0 5px 15px rgba(66, 133, 244, 0.4);
+}
+
+.subscribe-btn.apple {
+    background: #000;
+}
+
+.subscribe-btn.apple:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.subscribe-btn.copy {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.subscribe-btn.copy:hover {
+    box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+}
+
+.subscribe-info {
+    color: #666;
+    font-size: 0.95em;
+    margin-bottom: 12px;
 }
 
 .output-section {
@@ -111,8 +174,8 @@ button:active {
 }
 
 .controls {
-    margin-bottom: 20px;
-    padding-bottom: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
     border-bottom: 2px solid #e0e0e0;
 }
 
@@ -201,6 +264,12 @@ button:active {
     display: block;
 }
 
+.error-message.info {
+    background: #bee3f8;
+    color: #2c5aa0;
+    border-left-color: #2c5aa0;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 20px;
@@ -230,5 +299,11 @@ button:active {
         width: 100%;
         margin-right: 0;
         margin-bottom: 10px;
+    }
+
+    .subscribe-btn {
+        flex: none;
+        width: 100%;
+        min-width: auto;
     }
 }
